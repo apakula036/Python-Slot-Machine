@@ -1,6 +1,18 @@
+import random #import random to use the random module 
+
 MAX_LINES = 3 # all caps because its a constant 
 MAX_BET = 100
 MIN_BET = 1 
+
+ROWS = 3 
+COLS = 3
+
+symbol_count = {  #create a dictionary to store the symbols 
+    "A": 2,
+    "B": 4,
+    "C": 6, 
+    "D": 8
+}
 
 
 # get the amount that they want to bet 
@@ -55,11 +67,21 @@ def get_bet():
 
 
 def main(): #created the function main so we can just restart the whole game by just calling main 
+    # get all the information from the user 
     balance = deposit()
     lines = get_number_of_lines()
-    bet = get_bet()
+    while True:
+        bet = get_bet()
+        total_bet = bet * lines
+        if total_bet > balance:
+            print(f"You do not have enough to bet that amount, your current balance is: ${balance}.")
+        else:
+            break
 
-    print(balance, lines )
+    #tell the user what is happening 
+    print(f"You are betting ${bet} on {lines} lines. Total bet is equal to ${total_bet}")
+    print(balance, lines, bet )
+    print(f"${balance} current balance, {lines} lines betting on, and {bet} current bet.")
 
 
 main()
